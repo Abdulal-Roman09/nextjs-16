@@ -12,6 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import { ModeToggle } from "./ModeToggle";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -57,6 +58,7 @@ export const Navbar = () => {
         </NavigationMenu>
         {/* Right side actions (e.g., Sign In / Sign Up) */}
         <div className="hidden md:flex items-center gap-4">
+          <ModeToggle />
           <Button variant="ghost">Sign In</Button>
           <Button>Sign Up</Button>
         </div>
