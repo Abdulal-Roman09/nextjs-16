@@ -1,5 +1,11 @@
-import Image from "next/image";
+import { Navbar } from "@/components/ux/Navber";
+import { ReactNode } from "react";
 
-export default function Home() {
-  return <>this is main page</>;
+export default function Home({ children }: { children: ReactNode }) {
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  );
 }
