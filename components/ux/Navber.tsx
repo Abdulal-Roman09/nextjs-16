@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Home, Menu } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -11,7 +13,6 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 
 export const Navbar = () => {
@@ -26,41 +27,40 @@ export const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
-      <div className="container flex h-16 items-center justify-between px-4 mx-auto">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <div className="flex items-center">
-          <Link
-            href="/"
-            className="mr-8 font-bold text-2xl flex gap-2 items-center"
-          >
-            <Home />
-            <div>
-              Next<span className="text-blue-600">Pro</span>
-            </div>
-          </Link>
-        </div>
-        {/* center  */}
-        {/* Desktop Navigation */}
-        <NavigationMenu className="hidden md:flex">
+        <Link href="/" className="flex items-center gap-3">
+          <Home className="h-8 w-8 text-blue-600" />
+          <span className="font-bold text-2xl">
+            Next<span className="text-blue-600">Pro</span>
+          </span>
+        </Link>
+
+        {/* Desktop Navigation - Center */}
+        <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList>
             {navItems.map((item) => (
               <NavigationMenuItem key={item.label}>
-                <NavigationMenuLink
-                  href={item.href}
-                  className={navigationMenuTriggerStyle()}
-                >
-                  {item.label}
-                </NavigationMenuLink>
+                <Link href={item.href} legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    {item.label}
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-        {/* Right side actions (e.g., Sign In / Sign Up) */}
+
+        {/* Right side - Desktop */}
         <div className="hidden md:flex items-center gap-4">
           <ModeToggle />
-          <Button variant="ghost">Sign In</Button>
-          <Button>Sign Up</Button>
+          <Button variant="ghost" asChild>
+            <Link href="/auth/login">Login</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/auth/register">Register</Link>
+          </Button>
         </div>
 
         {/* Mobile Menu */}
@@ -71,28 +71,47 @@ export const Navbar = () => {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-80">
-            <div className="flex flex-col gap-6 mt-8">
-              <Link href="/" className="mr-8 font-bold text-xl">
-                YourLogo
+          <SheetContent side="right" className="w-80 pt-10">
+            <div className="flex flex-col gap-8">
+              {/* Mobile Logo */}
+              <Link
+                href="/"
+                className="flex items-center gap-3"
+                onClick={() => setIsOpen(false)}
+              >
+                <Home className="h-8 w-8 text-blue-600" />
+                <span className="font-bold text-2xl">
+                  Next<span className="text-blue-600">Pro</span>
+                </span>
               </Link>
+
+              {/* Mobile Nav Links */}
               <nav className="flex flex-col gap-4">
                 {navItems.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-lg font-medium hover:text-primary"
+                    className="text-lg font-medium hover:text-primary transition-colors"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </nav>
-              <div className="flex flex-col gap-4 mt-8">
-                <Button variant="ghost" className="w-full">
-                  Sign In
+
+              {/* Mobile Auth Buttons */}
+              <div className="flex flex-col gap-4">
+                <ModeToggle />
+                <Button variant="ghost" asChild className="w-full">
+                  <Link href="/auth/login" onClick={() => setIsOpen(false)}>
+                    Login
+                  </Link>
                 </Button>
-                <Button className="w-full">Sign Up</Button>
+                <Button asChild className="w-full">
+                  <Link href="/auth/register" onClick={() => setIsOpen(false)}>
+                    Register
+                  </Link>
+                </Button>
               </div>
             </div>
           </SheetContent>
