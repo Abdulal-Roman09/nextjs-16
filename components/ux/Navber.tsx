@@ -13,7 +13,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { ModeToggle } from "./ModeToggle";
+import { ModeToggle } from "../provider/ModeToggle";
 import LogoutButton from "@/module/auth/components/logout";
 
 export const Navbar = () => {
@@ -25,6 +25,7 @@ export const Navbar = () => {
     { label: "Pricing", href: "/pricing" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
+    { label: "Dashboard", href: "/dashboard" },
   ];
 
   return (
