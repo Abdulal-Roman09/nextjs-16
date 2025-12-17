@@ -56,10 +56,10 @@ export const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           <ModeToggle />
           <Button variant="ghost" asChild>
-            <Link href="/auth/login">Login</Link>
+            <Link href="/login">Login</Link>
           </Button>
           <Button asChild>
-            <Link href="/auth/register">Register</Link>
+            <Link href="/register">Register</Link>
           </Button>
         </div>
 
@@ -103,12 +103,12 @@ export const Navbar = () => {
               <div className="flex flex-col gap-4">
                 <ModeToggle />
                 <Button variant="ghost" asChild className="w-full">
-                  <Link href="/auth/login" onClick={() => setIsOpen(false)}>
+                  <Link href="/login" onClick={() => setIsOpen(false)}>
                     Login
                   </Link>
                 </Button>
                 <Button asChild className="w-full">
-                  <Link href="/auth/register" onClick={() => setIsOpen(false)}>
+                  <Link href="/register" onClick={() => setIsOpen(false)}>
                     Register
                   </Link>
                 </Button>
