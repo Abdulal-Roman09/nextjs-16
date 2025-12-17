@@ -14,6 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "./ModeToggle";
+import LogoutButton from "@/module/auth/components/logout";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -58,8 +59,8 @@ export const Navbar = () => {
           <Button variant="ghost" asChild>
             <Link href="/login">Login</Link>
           </Button>
-          <Button asChild>
-            <Link href="/register">Register</Link>
+          <Button variant={"destructive"} asChild className="">
+            <LogoutButton />
           </Button>
         </div>
 
@@ -107,10 +108,8 @@ export const Navbar = () => {
                     Login
                   </Link>
                 </Button>
-                <Button asChild className="w-full">
-                  <Link href="/register" onClick={() => setIsOpen(false)}>
-                    Register
-                  </Link>
+                <Button variant={"destructive"} asChild className="">
+                  <LogoutButton />
                 </Button>
               </div>
             </div>

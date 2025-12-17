@@ -1,5 +1,3 @@
-// lib/db.ts
-
 import { PrismaClient } from '@prisma/client'
 
 declare global {
@@ -8,7 +6,7 @@ declare global {
 }
 
 export const prisma = global.prisma || new PrismaClient({
-  log: ['query', 'info', 'warn', 'error'],  // optional, প্রয়োজন অনুযায়ী রাখো/রিমুভ করো
+  log: ['query', 'info', 'warn', 'error'],  
 })
 
 if (process.env.NODE_ENV !== 'production') {

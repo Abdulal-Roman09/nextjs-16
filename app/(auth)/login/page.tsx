@@ -1,7 +1,9 @@
 import LoginUI from "@/module/auth/components/login-ui";
-import React from "react";
+import { requireUnAuth } from "@/module/auth/lib/auth-utils";
 
-export default function LoginPage() {
+
+export default async function LoginPage() {
+  await requireUnAuth();
   return (
     <div>
       <LoginUI />

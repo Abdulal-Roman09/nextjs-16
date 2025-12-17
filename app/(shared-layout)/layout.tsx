@@ -1,7 +1,13 @@
 import { Navbar } from "@/components/ux/Navber";
+import { requireAuth } from "@/module/auth/lib/auth-utils";
 import { ReactNode } from "react";
 
-export default function SharedLayout({ children }: { children: ReactNode }) {
+export default async function SharedLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  await requireAuth();
   return (
     <div>
       <Navbar />
